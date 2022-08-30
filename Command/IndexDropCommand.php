@@ -35,7 +35,7 @@ class IndexDropCommand extends AbstractIndexServiceAwareCommand
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         if ($input->getOption('force')) {

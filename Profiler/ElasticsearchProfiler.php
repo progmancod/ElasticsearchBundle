@@ -91,7 +91,7 @@ class ElasticsearchProfiler implements DataCollectorInterface
         return $this->indexes;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'ongr.profiler';
     }

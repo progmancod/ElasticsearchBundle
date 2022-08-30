@@ -54,7 +54,7 @@ class IndexImportCommand extends AbstractIndexServiceAwareCommand
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $index = $this->getIndex($input->getOption(parent::INDEX_OPTION));
