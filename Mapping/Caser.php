@@ -11,7 +11,7 @@
 
 namespace ONGR\ElasticsearchBundle\Mapping;
 
-use Doctrine\Common\Inflector\Inflector;
+use Doctrine\Inflector\InflectorFactory;
 
 /**
  * Utility for string case transformations.
@@ -25,9 +25,9 @@ class Caser
      *
      * @return string
      */
-    public static function camel($string)
+    public static function camel(string $string): string
     {
-        return Inflector::camelize($string);
+        return InflectorFactory::create()->build()->camelize($string);
     }
 
     /**

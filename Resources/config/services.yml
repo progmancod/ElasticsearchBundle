@@ -12,13 +12,18 @@ services:
         tags:
             - { name: console.command }
 
+    ongr.esb.cache_adapter:
+        class: Symfony\Component\Cache\Adapter\PhpFilesAdapter
+        arguments: ['elasticsearch', 0, "%kernel.cache_dir%/ongr", false]
+
     ongr.esb.cache:
-        class: Doctrine\Common\Cache\PhpFileCache
-        arguments: ["%kernel.cache_dir%/ongr/elasticsearch", ".ongr.data"]
+        class: Doctrine\Common\Cache\Psr6\DoctrineProvider
+        factory: ['Doctrine\Common\Cache\Psr6\DoctrineProvider', 'wrap']
+        arguments: ["@ongr.esb.cache_adapter"]
 
     ongr.esb.cache_reader:
-        class: Doctrine\Common\Annotations\CachedReader
-        arguments: ["@annotations.reader", "@ongr.esb.cache", "%kernel.debug%"]
+        class: Doctrine\Common\Annotations\PsrCachedReader
+        arguments: ["@annotations.reader", "@ongr.esb.cache_adapter", "%kernel.debug%"]
 
     ONGR\ElasticsearchBundle\Service\ExportService: ~
     ONGR\ElasticsearchBundle\Service\ImportService: ~
