@@ -20,6 +20,7 @@ use ONGR\ElasticsearchBundle\Service\IndexService;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 class MappingPass implements CompilerPassInterface
 {
@@ -108,7 +109,7 @@ class MappingPass implements CompilerPassInterface
                 $indexServiceDefinition = new Definition(IndexService::class, [
                     $namespace,
                     $converterDefinition,
-                    $container->getDefinition('event_dispatcher'),
+                    new Reference('event_dispatcher'),
                     $indexSettings,
                     $container->getParameter(Configuration::ONGR_PROFILER_CONFIG)
                         ? $container->getDefinition('ongr.esb.tracer') : null
