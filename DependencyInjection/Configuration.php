@@ -28,7 +28,7 @@ class Configuration implements ConfigurationInterface
     const ONGR_DEFAULT_INDEX = 'ongr.esb.default_index';
     const ONGR_INDEXES_OVERRIDE = 'ongr.esb.indexes_override';
 
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
 
         $treeBuilder = new TreeBuilder('ongr_elasticsearch');

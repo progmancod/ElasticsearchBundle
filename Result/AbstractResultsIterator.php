@@ -101,7 +101,7 @@ abstract class AbstractResultsIterator implements \Countable, \Iterator
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return $this->count;
     }
@@ -109,7 +109,7 @@ abstract class AbstractResultsIterator implements \Countable, \Iterator
     /**
      * Return the current element.
      */
-    public function current()
+    public function current(): mixed
     {
         return $this->getDocument($this->key());
     }
@@ -117,9 +117,9 @@ abstract class AbstractResultsIterator implements \Countable, \Iterator
     /**
      * Move forward to the next element.
      */
-    public function next(): self
+    public function next(): void
     {
-        return $this->advanceKey();
+        $this->advanceKey();
     }
 
     /**
@@ -241,7 +241,7 @@ abstract class AbstractResultsIterator implements \Countable, \Iterator
     /**
      * Returns score of current hit.
      */
-    public function getDocumentScore(): int
+    public function getDocumentScore(): ?int
     {
         if (!$this->valid()) {
             throw new \LogicException('Document score is available only while iterating over results.');
