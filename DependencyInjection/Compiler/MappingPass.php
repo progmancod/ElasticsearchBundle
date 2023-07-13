@@ -34,7 +34,7 @@ class MappingPass implements CompilerPassInterface
      */
     private $defaultIndex = null;
 
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $kernelDir = $container->getParameter('kernel.project_dir');
 
