@@ -43,9 +43,6 @@ class DocumentParser
         $this->reader = $reader;
         $this->cache = $cache;
         $this->analysisConfig = $analysisConfig;
-
-        #Fix for annotations loader until doctrine/annotations 2.0 will be released with the full autoload support.
-        AnnotationRegistry::registerLoader('class_exists');
     }
 
     public function getIndexAliasName(\ReflectionClass $class): string
